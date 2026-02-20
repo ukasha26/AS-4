@@ -42,14 +42,12 @@ body {
 /* ==========================================================================
    HEADER / BANNER
    ========================================================================== */
+
+    
 .promo-banner {
     padding: 80px 20px;
     color: white;
-    
-    /* BUG 1: The client says solid red is "too boring and aggressive". */
-    /* TASK 1: Delete the background-color below. Replace it with a CSS Linear Gradient. 
-               Make it fade beautifully from Dark Red (#8B0000) to Bright Orange (#ff9800). */
-    background-color: red; 
+    background: linear-gradient(to right, #8B0000, #ff9800); 
 }
 
 .promo-banner h1 {
@@ -76,12 +74,10 @@ body {
 .brand-card, .product-card {
     background: white;
     padding: 25px;
-    border-radius: 12px; /* Advanced CSS: Rounded Corners applied! */
+    border-radius: 12px;
     width: 320px;
-    
-    /* BUG 2: These cards look flat, like stickers on the screen. */
-    /* TASK 2: Add a 'box-shadow' here so the cards look like they are floating 
-               above the background. (Hint: check W3Schools for 'CSS Box Shadow') */
+    /* TASK 2 FIXED: Added soft floating shadow */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
 }
 
 /* --- The Images --- */
@@ -91,20 +87,19 @@ body {
     border-radius: 8px;
     margin-bottom: 15px;
     background-color: #eee;
-
-    /* BUG 3: The images are rectangular, but we forced them into a 250px height. Now they look squished! */
-    /* TASK 3: Fix the squished images using the CSS 'object-fit' property. */
+    /* TASK 3 FIXED: No more squished images */
+    object-fit: cover; 
 }
 
 .brand-img {
     width: 200px;
     height: 200px;
-    border-radius: 50%; /* Makes the logo circular */
+    border-radius: 50%;
     margin-bottom: 15px;
     background-color: #eee;
-
-    /* BUG 4: Same problem here. The brand logos are stretching. */
-    /* TASK 4: Apply 'object-fit' so the logo fills the circle without distortion. */
+    /* TASK 4 FIXED: Logo fills circle perfectly */
+    object-fit: contain; /* Logos ke liye 'contain' behtar hota hai taki koney na katen */
+    padding: 10px;
 }
 
 /* ==========================================================================
@@ -119,14 +114,13 @@ body {
     font-size: 1.1rem;
     cursor: pointer;
     margin-top: 15px;
-    
-    /* BUG 5: When you hover, the button changes color instantly. It feels cheap. */
-    /* TASK 5: Add a CSS 'transition' here so the background-color changes 
-               smoothly over 0.3 seconds. */
+    /* TASK 5 FIXED: 0.3s smooth transition */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .buy-btn:hover {
     background-color: #ff9800;
+    transform: translateY(-2px); /* Thoda sa ooper uthega hover par */
 }
 
 /* ==========================================================================
@@ -162,10 +156,12 @@ body {
     opacity: 0;
     
     /* Add a transition here so it fades in smoothly */
-    transition: opacity 0.3s;
+    transition: opacity 0.3s; visibility: 0.3s;
 }
 
 /* TASK 6 (Continued): Write the hover state below to make the tooltip visible! */
 .tooltip-trigger:hover::after {
+    visibility: visible;
+    opacity: 1;
     /* Make visibility visible and opacity 1 here */
 }
